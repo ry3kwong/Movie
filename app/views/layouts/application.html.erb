@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movies List</title>
+  <title>Movie Database App</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -19,7 +19,7 @@
 <br>
 
      <p><% if user_signed_in? %>
-      	Welcome, <%= link_to current_user.email, mailto:current_user.email %> | <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %> 
+      	Welcome, <%= link_to current_user.email, 'mailto:' %> | <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %> 
      <% else %>
       	<%= link_to 'Login', new_user_session_path %> | 
       	<%= link_to 'Signup', new_user_registration_path %>
