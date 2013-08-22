@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movies List</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<header>
+		<nav>
+			<%= link_to "Movies List", root_path %> | <%= link_to "Add New Movie", new_movie_path %> 
+		</nav>
+
+	</header>
+
+<br>
+
+     <p><% if user_signed_in? %>
+      	Welcome, <%= link_to current_user.email, mailto:current_user.email %> | <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %> 
+     <% else %>
+      	<%= link_to 'Login', new_user_session_path %> | 
+      	<%= link_to 'Signup', new_user_registration_path %>
+     <% end %>
+
+     </p>
+
+<%= form_tag movies_search_path, method: :get do %>
+<%= select_tag "criteria", options_for_select([["Title", "title"],["Description", "description"], ["Year released", "year_released"]]) %>
+<%= label_tag(:q, "Search for: ") %>
+<%= text_field_tag(:q) %>
+<%= submit_tag("Submit") %>
+<%end%>
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+ 
+
+<%= yield %>
+
+</body>
+</html>
+
